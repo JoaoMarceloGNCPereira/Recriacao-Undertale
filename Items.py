@@ -1,7 +1,7 @@
 
 class Backpack:
-    def __init__(self, listItems=[]):
-        self.listItems = listItems
+    def __init__(self, listItems=None):
+        self.listItems = [] if listItems is None else listItems
 
     def addItem(self, item):
         self.listItems.append(item)
@@ -113,25 +113,8 @@ class ItemsCreator:
         newBow = Weapon(name, price, 1, currentDurability, rarity, description,
                         damageMax, damageMin, chanceHit=0.7, chanceCritical=0.2, damageMultiplier=3)
         return newBow
-
-
     def createMagicStaff(self, name: str, price: int, currentDurability: float,
                  rarity: float, description: str, damageMax: float, damageMin: float):
         newBow = Weapon(name, price, 1, currentDurability, rarity, description,
                         damageMax, damageMin, chanceHit=0.8, chanceCritical=0.5, damageMultiplier=1.5)
         return newBow
-
-
-item_creator = ItemsCreator()
-espada = item_creator.createSword("espada dos macho", 12, 1, 1, "espada boa demaizi", 20, 10)
-espada.printStats()
-
-pocao = item_creator.createPotion("healing", 11, 1)
-item = item_creator.createItem("jujubas", 11, 1, 1, 1, "boas")
-
-backback = Backpack()
-backback.addItem(item)
-backback.addItem(pocao)
-backback.addItem(espada)
-for i in backback.listItems:
-    i.printStats()

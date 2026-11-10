@@ -25,19 +25,23 @@ class BattleSystem:
     self.is_waiting_ai = True
 
     def background_task():
-      # Pega o HP atual do inimigo (supondo que ele tenha hp e max_hp)
-      currentHp = getattr(self.enemy, "currentHp", 100)
-      maxHp = getattr(self.enemy, "maxHp", 100)
-
-      dialogue, score, convinced = self.enemy.try_to_convince(
-          player_input, currentHp, maxHp
-      )
-      self.ai_result = {
-          "dialogue": dialogue,
-          "score": score,
-          "convinced": convinced,
-      }
-      self.is_waiting_ai = False
+      try:
+        dialogue, score, convinced = self.enemy.try_to_convince(
+            player_input, self.enemy.currentHp, self.enemy.maxHp
+        )
+        self.ai_result = {
+            "dialogue": dialogue,
+            "score": score,
+            "convinced": convinced,
+        }
+      except Exception as error:
+        self.ai_result = {
+            "dialogue": f"Não foi possível obter a resposta da IA: {error}",
+            "score": 0,
+            "convinced": False,
+        }
+      finally:
+        self.is_waiting_ai = False
 
     # Dispara a thread para não travar o Pygame
     threading.Thread(target=background_task, daemon=True).start()

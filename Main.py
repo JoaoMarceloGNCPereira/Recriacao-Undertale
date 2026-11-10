@@ -1,16 +1,19 @@
 # Example file showing a circle moving on screen
 import pygame
-from pprint import pprint
 from pygame.math import Vector2
-from colordict import ColorDict
 
 import Renderer
 import Items
 import Buttons
 
-# Inicializing imported color dictionary as variable, reversed color dict also
-COLOR = ColorDict()
-reverse_colors = {tuple(val): name for name, val in COLOR.items()}
+# Cores usadas pelo jogo. Mantê-las aqui evita depender de um pacote externo
+# apenas para obter nomes de cores.
+COLOR = {
+    "black": (0, 0, 0),
+    "white": (255, 255, 255),
+    "orange": (255, 165, 0),
+    "yellow": (255, 255, 0),
+}
 
 SCREEN_SIZE = (1280, 720)
 SCREEN_CENTER = (SCREEN_SIZE[0] // 2, SCREEN_SIZE[1] // 2)

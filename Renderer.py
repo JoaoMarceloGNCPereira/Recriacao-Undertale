@@ -8,7 +8,7 @@ class Renderer:
             colorDict,
             SCREEN_LATERAL_PADDING,
             SCREEN_VERTICAL_PADDING,
-            defaultFontPath: str = "DeterminationMono.ttf",
+            defaultFontPath: str = "determination.ttf",
             fontSize: int = 28,
     ):
         self.screen = screen
