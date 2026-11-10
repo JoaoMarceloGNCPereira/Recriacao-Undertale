@@ -1,6 +1,10 @@
 # ai_chat.py
 import re
 import os
+from dotenv import load_dotenv
+
+# Carrega GEMINI_API_KEY de um arquivo .env local, quando existir.
+load_dotenv()
 
 class EnemyAIChat:
 
